@@ -7,10 +7,8 @@ export default function Checkout() {
   const { cart, clearCart } = useCart();
   const navigate = useNavigate();
 
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  // ✅ Calculate total
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const handlePlaceOrder = () => {
     if (cart.length === 0) return;
@@ -22,18 +20,19 @@ export default function Checkout() {
       status: "Processing", // default status
     };
 
-    // Save to localStorage
+    // ✅ Save order in localStorage
     localStorage.setItem("lastOrder", JSON.stringify(newOrder));
 
-    // Clear cart after placing order
+    // ✅ Clear cart after placing order
     clearCart();
 
-    // Redirect to Order Status page
+    // ✅ Redirect to order status page
     navigate("/order-status");
   };
 
   return (
     <div className="min-h-screen flex flex-col">
+      {/* 🔹 Header */}
       <Header />
 
       <section className="py-16 px-6 md:px-20 flex-1 bg-brand-mist">
@@ -46,9 +45,10 @@ export default function Checkout() {
             Your cart is empty. Add some products first.
           </p>
         ) : (
-          <div className="max-w-3xl mx-auto bg-white shadow-luxe rounded-xl2 p-6">
-            {/* Order Summary */}
+          <div className="max-w-3xl mx-auto bg-white shadow-luxe rounded-xl p-6">
+            {/* 🔹 Order Summary */}
             <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+
             {cart.map((item) => (
               <div
                 key={item.id}
@@ -61,11 +61,9 @@ export default function Checkout() {
               </div>
             ))}
 
-            <h3 className="text-lg font-bold mt-6">
-              Total: ${total}.00
-            </h3>
+            <h3 className="text-lg font-bold mt-6">Total: ${total}.00</h3>
 
-            {/* Confirm Order Button */}
+            {/* 🔹 Confirm Order Button */}
             <button
               onClick={handlePlaceOrder}
               className="mt-6 w-full py-3 bg-brand-gold text-brand-navy font-semibold rounded-lg shadow hover:bg-brand-ivory hover:text-brand-navy transition"
@@ -76,6 +74,7 @@ export default function Checkout() {
         )}
       </section>
 
+      {/* 🔹 Footer */}
       <footer className="bg-brand-navy text-brand-ivory py-6 text-center">
         <p className="text-sm">© 2025 MyClothing. All rights reserved.</p>
       </footer>

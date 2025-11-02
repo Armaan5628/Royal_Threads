@@ -1,15 +1,13 @@
 import React from "react";
 import Header from "../components/Header";
-import { useCart } from "../pages/CartContext";
+import { useCart } from "./CartContext";
 import { Link } from "react-router-dom";
 
 export default function Cart() {
   const { cart, removeFromCart, clearCart } = useCart();
 
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  // ✅ Calculate total price
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -21,18 +19,19 @@ export default function Cart() {
           Your Shopping Cart 🛒
         </h1>
 
-        {cart.length === 10 ? (
+        {/* ✅ Empty Cart Condition */}
+        {cart.length === 0 ? (
           <p className="text-center text-brand-charcoal">
             Your cart is empty. Start shopping now!
           </p>
         ) : (
-          <div className="max-w-4xl mx-auto bg-white shadow-luxe rounded-xl2 p-6">
+          <div className="max-w-4xl mx-auto bg-white shadow-luxe rounded-xl p-6">
+            {/* ✅ Cart Items */}
             {cart.map((item) => (
               <div
                 key={item.id}
                 className="flex items-center justify-between border-b py-4"
               >
-                {/* 🔹 Product Image */}
                 <div className="flex items-center gap-4">
                   <img
                     src={item.img}
@@ -47,7 +46,7 @@ export default function Cart() {
                   </div>
                 </div>
 
-                {/* 🔹 Remove Button */}
+                {/* Remove Button */}
                 <button
                   onClick={() => removeFromCart(item.id)}
                   className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
@@ -57,7 +56,7 @@ export default function Cart() {
               </div>
             ))}
 
-            {/* 🔹 Cart Summary */}
+            {/* ✅ Cart Summary */}
             <div className="flex justify-between items-center mt-6">
               <h2 className="text-xl font-bold">Total: ${total}.00</h2>
               <div className="flex gap-4">
@@ -68,7 +67,6 @@ export default function Cart() {
                   Clear Cart
                 </button>
 
-                {/* ✅ Navigate to Checkout */}
                 <Link
                   to="/checkout"
                   className="px-6 py-2 bg-brand-gold text-brand-navy font-semibold rounded-lg shadow hover:bg-brand-ivory hover:text-brand-navy transition"

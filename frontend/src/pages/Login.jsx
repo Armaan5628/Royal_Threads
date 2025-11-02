@@ -7,10 +7,10 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
@@ -28,7 +28,7 @@ export default function Login() {
 
       alert("Login Successful 🎉");
       navigate("/"); // redirect to home
-    } catch (err: any) {
+    } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Invalid email or password ❌");
     } finally {
@@ -40,16 +40,17 @@ export default function Login() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
+      {/* 🔹 Login Form Section */}
       <section className="flex flex-1 items-center justify-center bg-brand-mist px-6">
         <div className="bg-white shadow-luxe rounded-xl2 p-8 w-full max-w-md">
           <h1 className="text-3xl font-bold text-center text-brand-navy mb-6">
             Login
           </h1>
 
-          {error && (
-            <p className="text-red-600 text-center mb-4">{error}</p>
-          )}
+          {/* 🔹 Error Message */}
+          {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
+          {/* 🔹 Form */}
           <form onSubmit={handleLogin} className="space-y-4">
             <input
               type="email"

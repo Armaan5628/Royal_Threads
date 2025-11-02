@@ -3,37 +3,30 @@ import Header from "../components/Header";
 import { useCart } from "../pages/CartContext";   // ✅ Cart Context
 import { useWishlist } from "../pages/WishlistContext"; // ✅ Wishlist Context
 
-export default function WomenJewelry() {
+export default function WomenBridal() {
   const { addToCart } = useCart();
   const { addToWishlist } = useWishlist();
 
   const products = [
-    { id: 1, title: "Gold Necklace", price: 199, img: "https://picsum.photos/id/306/500/500" },
-    { id: 2, title: "Diamond Earrings", price: 249, img: "https://picsum.photos/id/307/500/500" },
-    { id: 3, title: "Pearl Bracelet", price: 149, img: "https://picsum.photos/id/308/500/500" },
+    { id: 1, title: "Classic Bridal Gown", price: 599, img: "https://picsum.photos/id/308/500/500" },
+    { id: 2, title: "Designer Lehenga", price: 729, img: "https://picsum.photos/id/309/500/500" },
+    { id: 3, title: "Modern Fusion Dress", price: 659, img: "https://picsum.photos/id/310/500/500" },
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
+      {/* 🔹 Global Header */}
       <Header />
 
       {/* 🔹 Hero Section */}
-      <section
-        className="relative h-[50vh] bg-cover bg-center flex items-center justify-center"
-        style={{ backgroundImage: "url('https://picsum.photos/id/305/1600/800')" }}
-      >
-        <div className="absolute inset-0 bg-black/50"></div>
-        <h1 className="relative text-5xl font-serif font-bold text-white z-10">
-          Jewelry & Accessories
-        </h1>
+      <section className="py-20 text-center bg-brand-navy text-white">
+        <h1 className="text-5xl font-serif font-bold">Bridal Collection</h1>
+        <p className="mt-4 text-lg">Celebrate your big day in timeless elegance.</p>
       </section>
 
-      {/* 🔹 Products */}
-      <section className="py-16 px-6 md:px-20 bg-brand-mist flex-1">
-        <h2 className="text-3xl font-serif font-bold text-center text-brand-navy">
-          Sparkle with Elegance
-        </h2>
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {/* 🔹 Product Grid */}
+      <section className="px-6 md:px-20 py-16 flex-1 bg-brand-mist">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {products.map((item) => (
             <div
               key={item.id}
@@ -46,7 +39,7 @@ export default function WomenJewelry() {
 
                 {/* ✅ Buttons Row */}
                 <div className="flex gap-3 mt-4 justify-center">
-                  {/* Add to Cart */}
+                  {/* 🛒 Add to Cart */}
                   <button
                     onClick={() => addToCart(item)}
                     className="flex-1 py-2 px-4 rounded-lg bg-brand-navy text-white hover:bg-brand-gold hover:text-brand-charcoal transition"
@@ -54,7 +47,7 @@ export default function WomenJewelry() {
                     Add to Cart
                   </button>
 
-                  {/* Add to Wishlist */}
+                  {/* ❤️ Add to Wishlist */}
                   <button
                     onClick={() => addToWishlist(item)}
                     className="px-4 py-2 rounded-lg border border-brand-gold text-brand-navy hover:bg-brand-gold hover:text-white transition"

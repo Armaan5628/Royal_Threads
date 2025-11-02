@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
-import { useCart } from "../pages/CartContext";   // ✅ Cart Context
-import { useWishlist } from "../pages/WishlistContext"; // ✅ Wishlist Context
+import { useCart } from "./CartContext"; // ✅ Cart Context
+import { useWishlist } from "./WishlistContext"; // ✅ Wishlist Context
 import { FaHeart } from "react-icons/fa"; // ✅ Heart Icon
 
 export default function Discover() {
@@ -42,7 +42,7 @@ export default function Discover() {
         className="relative h-[60vh] bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: "url('/assets/images/DL.jpg')" }}
       >
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/40" />
         <h1 className="relative text-5xl md:text-6xl font-serif font-bold text-white z-10 drop-shadow-lg">
           Discover Luxury
         </h1>
@@ -61,7 +61,7 @@ export default function Discover() {
           {products.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-xl2 shadow-luxe overflow-hidden hover:scale-105 transition"
+              className="bg-white rounded-2xl shadow-luxe overflow-hidden hover:scale-105 transition-transform duration-300"
             >
               <img src={item.img} alt={item.title} className="w-full h-56 object-cover" />
               <div className="p-6">
@@ -103,7 +103,7 @@ export default function Discover() {
         </p>
         <a
           href="/signup"
-          className="px-8 py-3 bg-white text-brand-navy font-semibold rounded-xl2 shadow-luxe hover:bg-brand-ivory hover:text-brand-gold transition"
+          className="px-8 py-3 bg-white text-brand-navy font-semibold rounded-2xl shadow-luxe hover:bg-brand-ivory hover:text-brand-gold transition"
         >
           Subscribe Now
         </a>

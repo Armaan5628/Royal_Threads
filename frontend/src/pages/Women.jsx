@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import { useCart } from "../pages/CartContext";   // ✅ Cart Context
-import { useWishlist } from "../pages/WishlistContext"; // ✅ Wishlist Context
+import { useCart } from "./CartContext";   // ✅ Cart Context
+import { useWishlist } from "./WishlistContext"; // ✅ Wishlist Context
 
 export default function Women() {
   const { addToCart } = useCart();
   const { addToWishlist } = useWishlist();
 
-  // ✅ Featured categories (just links, like before)
+  // ✅ Featured categories (just links)
   const categories = [
     { title: "Casual Wear", image: "/assets/images/Casualwear.jpg", link: "/women/casual" },
     { title: "Evening Gowns", image: "/assets/images/Evening_Gowns.jpg", link: "/women/evening" },
@@ -70,7 +70,7 @@ export default function Women() {
         </div>
       </section>
 
-      {/* 🔹 Featured Products (with Cart + Wishlist buttons) */}
+      {/* 🔹 Featured Products */}
       <section className="px-6 md:px-20 py-16 bg-brand-mist">
         <h2 className="text-3xl font-bold text-center text-brand-navy mb-10">
           Featured Products

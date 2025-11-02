@@ -37,7 +37,7 @@ export default function Wishlist() {
               {wishlist.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-white rounded-xl2 shadow-luxe overflow-hidden hover:scale-105 transition"
+                  className="bg-white rounded-2xl shadow-luxe overflow-hidden hover:scale-105 transition"
                 >
                   <img
                     src={item.img}
