@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// 🔹 Context
+// 🔹 Context Providers
 import { CartProvider } from "./pages/CartContext";
 import { WishlistProvider } from "./pages/WishlistContext"; 
 
@@ -21,14 +21,11 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderStatus from "./pages/OrderStatus";
 import Wishlist from "./pages/Wishlist";
-import Login from "./pages/login";
-import Signup from "./pages/signup";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import CategoryPage from "./pages/categoryPage";
 import Accessories from "./pages/Accessories";
 import Jewelry from "./pages/Jewelry";
-
-
-
 
 export default function App() {
   return (
@@ -36,45 +33,44 @@ export default function App() {
       <WishlistProvider>
         <Router>
           <Routes>
-            {/* Home Page */}
+            {/* 🔹 Home */}
             <Route path="/" element={<Home />} />
 
-            {/* Men & Women */}
+            {/* 🔹 Men & Women */}
             <Route path="/men" element={<Men />} />
             <Route path="/women" element={<Women />} />
 
-            {/* Main Categories */}
+            {/* 🔹 Main Categories */}
             <Route path="/wedding" element={<Wedding />} />
             <Route path="/signature" element={<Signature />} />
             <Route path="/discover" element={<Discover />} />
 
-            {/* Women Subcategories */}
+            {/* 🔹 Women Subcategories */}
             <Route path="/women/casual" element={<WomenCasual />} />
             <Route path="/women/bridal" element={<WomenBridal />} />
             <Route path="/women/sarees" element={<WomenSarees />} />
             <Route path="/women/jewelry" element={<WomenJewelry />} />
             <Route path="/women/evening" element={<WomenEvening />} />
 
-            {/* Cart & Orders */}
+            {/* 🔹 Cart & Orders */}
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/order-status" element={<OrderStatus />} />
             <Route path="/orders" element={<OrderStatus />} />
-            
 
-            {/* Wishlist */}
+            {/* 🔹 Wishlist */}
             <Route path="/wishlist" element={<Wishlist />} />
+
+            {/* 🔹 Authentication */}
             <Route path="/login" element={<Login />} />
-            <Route path="/login" element={<Login />} />
-<Route path="/signup" element={<Signup />} />
-<Route path="/login" element={<Login />} />
- <Route path="/category/:name" element={<CategoryPage />} />
- <Route path="/accessories" element={<Accessories />} />
-        <Route path="/jewelry" element={<Jewelry />} />
+            <Route path="/signup" element={<Signup />} />
 
+            {/* 🔹 Category & Subcategory Pages */}
+            <Route path="/category/:name" element={<CategoryPage />} />
+            <Route path="/accessories" element={<Accessories />} />
+            <Route path="/jewelry" element={<Jewelry />} />
 
-
-            {/* Catch-all route */}
+            {/* 🔹 Catch-all 404 */}
             <Route
               path="*"
               element={

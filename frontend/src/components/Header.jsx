@@ -5,11 +5,17 @@ import { useCart } from "../pages/CartContext"; // ✅ Cart Context
 
 export default function Header() {
   const { cart } = useCart();
-  const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const itemCount = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
   const navigate = useNavigate();
 
-  // ✅ Get logged-in user from localStorage
-  const user = JSON.parse(localStorage.getItem("user") || "null");
+  // ✅ Safely get logged-in user from localStorage
+  let user = null;
+  try {
+    user = JSON.parse(localStorage.getItem("user")) || null;
+  } catch (err) {
+    console.warn("Invalid user data in localStorage");
+    user = null;
+  }
 
   // Handlers
   const handleSearch = () => alert("Search feature coming soon!");
@@ -17,6 +23,7 @@ export default function Header() {
   const handleChat = () => alert("Opening support chat...");
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
     navigate("/login");
   };
 
@@ -83,7 +90,7 @@ export default function Header() {
               onClick={handleChat}
             />
 
-            {/* 👤 Login/Logout Icon */}
+            {/* 👤 Login/Logout */}
             {!user ? (
               <FaUser
                 className="text-brand-charcoal cursor-pointer hover:text-brand-gold transition"

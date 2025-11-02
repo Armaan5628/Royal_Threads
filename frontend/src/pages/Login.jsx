@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Header from "../components/Header";
+import { api } from "../services/api"; // Axios instance with baseURL
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -17,17 +17,19 @@ export default function Login() {
 
     try {
       // ✅ Send login request to backend
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
-        email,
-        password,
-      });
+      const res = await api.post("/auth/login", { email, password });
 
       // ✅ Save JWT token + user info in localStorage
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ _id: res.data._id, email: res.data.email })
+      );
 
       alert("Login Successful 🎉");
-      navigate("/"); // redirect to home
+
+      // ✅ Redirect to home page
+      navigate("/");
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Invalid email or password ❌");
